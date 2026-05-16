@@ -636,14 +636,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-// End of file
+// Smooth scroll to projects section
+const exploreBtn = document.getElementById('exploreBtn');
+if (exploreBtn) {
+    exploreBtn.addEventListener('click', () => {
+        const projectsSection = document.querySelector('.projects-section');
+        if (projectsSection) {
+            const prefersReducedMotionValue = prefersReducedMotion();
+            projectsSection.scrollIntoView({
+                behavior: prefersReducedMotionValue ? 'auto' : 'smooth',
+                block: 'start'
+            });
+            // Focus on the projects section after scrolling
+            setTimeout(() => {
+                const firstTab = document.querySelector('.tab');
+                if (firstTab) firstTab.focus();
+            }, prefersReducedMotionValue ? 0 : 500);
+        }
+    });
+}
 
+// Accessibility helper referenced by modal code
+function setMainInert(isInert) {
+    const main = document.getElementById('main-content');
+    if (!main) return;
+    if (isInert) main.setAttribute('inert', ''); else main.removeAttribute('inert');
+}
 
+let lastFocusedElement = null;
 
-
-
-
-
-
-
-
+// End of file (single coherent main.js implementation above)
