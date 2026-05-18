@@ -83,7 +83,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var removeTrap = null;
     var lastFocusedElement = null;
     var recentSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+    //-----------------------project count badge------------------------------------
+    const projectCountBadge = document.getElementById("projectCountBadge");
+    const projectCount = document.querySelectorAll(".project-card").length;
 
+    if (projectCountBadge) {
+        projectCountBadge.textContent = `${projectCount} projects`;
+    }
     // ── Theme Toggle ────────────────────────────────────────────────
     function updateThemeToggleAria(isLightTheme) {
         if (!themeToggle) return;
