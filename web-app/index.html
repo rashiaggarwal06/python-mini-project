@@ -325,6 +325,37 @@
             font-weight: 700;
             color: var(--text-color);
         }
+        .btn-stop {
+            background: linear-gradient(135deg, #d22b44, #dc1331);
+            color: #fff;
+            border: none;
+            padding: 0.85rem 2.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: 700;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+
+        }
+
+        .btn-stop:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px #e74c3c;
+        }
+
+        .btn-stop:active {
+            transform: translateY(0);
+        }
+
+        .btn-stop:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
 
         /* ── Reduced-motion overrides for playground ────────────────── */
         @media (prefers-reduced-motion: reduce) {
@@ -1016,15 +1047,16 @@
 
                 </div><!-- /playground-body -->
 
-                <!-- Run button row -->
+                <!-- Run and Stop button row -->
                 <div class="playground-controls">
                     <button type="button" class="btn-run" id="runCode" disabled aria-label="Run Python code">
                         <i class="fas fa-play" aria-hidden="true"></i>
                         Run Code
                     </button>
-                    <span class="run-hint">
-                        or press <kbd>Ctrl</kbd>+<kbd>Enter</kbd>
-                    </span>
+                    <button type="button" class="btn-stop" id="stopCode" disabled aria-label="Stop execution">
+                        <i class="fas fa-stop" aria-hidden="true"></i> 
+                        Stop Execution
+                    </button>
                 </div>
 
             </div>
@@ -1180,9 +1212,6 @@
     </script>
     <script src="js/hero-canvas.js"></script>
 
-    <script>
-        lucide.createIcons();
-    </script>
     <!-- Search Functionality -->
 <script>
 const searchInput = document.getElementById("searchInput");
